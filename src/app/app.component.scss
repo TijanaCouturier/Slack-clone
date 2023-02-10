@@ -1,0 +1,220 @@
+mat-drawer-container {
+    width: 100vw;
+    max-width: 100%;
+    height: calc(100vh - 50px);
+}
+
+mat-icon {
+    cursor: pointer;
+    color: white;
+}
+
+.sidenav {
+    width: 300px;
+    background-color: #3F0E40;
+    color: white;
+}
+
+mat-toolbar,
+mat-toolbar-row {
+    background-color: #3F0E40;
+    display: flex;
+    justify-content: space-between;
+    min-height: 60px;
+    button {
+        display: flex;
+        align-items: center;
+        background-color: #3F0E40;
+        border: none;
+    }
+    img {
+        width: 40px;
+        cursor: pointer;
+    }
+}
+
+::ng-deep .mat-form-field-underline {
+    height: 0;
+}
+
+.h1 {
+    border-bottom: 1px solid rgb(85, 24, 86);
+    border-top: 1px solid rgb(85, 24, 86);
+    height: 20px;
+    padding: 20px;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.example-form-field {
+    background-color: #5B125C;
+    height: 32px;
+    width: 300px;
+    padding-left: 20px;
+    border-radius: 5px;
+    color: white;
+    button {
+        border-radius: 10px;
+        padding: 3px;
+    }
+    .mat-form-field-flex {
+        display: inline-flex;
+        align-items: center !important;
+        box-sizing: border-box;
+        width: 100%;
+        padding: 5px;
+    }
+}
+
+.thread-area {
+    border-bottom: 1px solid rgb(85, 24, 86);
+    display: flex;
+    height: 20px;
+    padding: 20px;
+    cursor: pointer;
+    mat-icon {
+        margin-right: 16px;
+    }
+    p {
+        &:hover {
+            color: rgb(207, 87, 209);
+        }
+    }
+}
+
+.example-button-container {
+    display: flex;
+    align-items: center;
+    padding-top: 10px;
+    mat-icon {
+        background-color: rgb(161, 97, 163);
+        border-radius: 100%;
+    }
+}
+
+.menu-items {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    li {
+        padding: 16px;
+        max-height: 290px;
+        cursor: pointer;
+        border-bottom: 1px solid rgb(85, 24, 86);
+        mat-icon {
+            margin-right: 16px;
+        }
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.04);
+        }
+        &:focus {
+            outline: none;
+        }
+        p {
+            padding-top: 14px;
+            padding-right: 25px;
+        }
+    }
+}
+
+.channel-div {
+    display: flex;
+    align-items: center;
+}
+
+.allChannels {
+    padding-left: 10px;
+    p {
+        margin-right: 24px;
+    }
+}
+
+.channel-tab {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.all-channel-div {
+    display: flex;
+}
+
+.router-container {
+    padding-left: 56px;
+    padding-right: 56px;
+    padding-top: 16px;
+}
+
+.imprint {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+}
+
+
+/*
+.channel-left {
+    display: flex;
+    padding-bottom: 10px;
+    background-color: #f5f2f2;
+}
+
+.logo-container {
+    border-bottom: 1px solid rgba(155, 97, 97, 0.04);
+    padding-right: 16px;
+    padding-left: 16px;
+    min-height: 56px;
+    display: flex;
+    align-items: center;
+}  */
+
+.example-tree-invisible {
+    display: none;
+}
+
+.example-tree ul,
+.example-tree li {
+    margin-top: 0;
+    margin-bottom: 0;
+    list-style-type: none;
+}
+
+
+/*
+   * This padding sets alignment of the nested nodes.
+   */
+
+.example-tree .mat-nested-tree-node div[role=group] {
+    padding-left: 0px;
+}
+
+
+/*
+   * Padding for leaf nodes.
+   * Leaf nodes need to have padding so as to align with other non-leaf nodes
+   * under the same parent.
+   */
+
+.example-tree div[role=group]>.mat-tree-node {
+    padding-left: 10px;
+    background-color: #3F0E40;
+    color: white;
+}
+
+.mat-tree-node {
+    min-height: 40px;
+    padding-top: 0 !important;
+    margin-bottom: 0;
+}
+
+.direct-message {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+::ng-deep .mat-form-field-underline {
+    display: none;
+}

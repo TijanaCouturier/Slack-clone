@@ -1,0 +1,29 @@
+<div class="dialog-container">
+
+    <h1 mat-dialog-title>Create new channel</h1>
+    <div mat-dialog-content style="overflow: initial;">
+        <div>
+            <div>
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Channel Name</mat-label>
+                    <input [(ngModel)]="newChannel" matInput placeholder="Enter channel Name">
+                    <!--<mat-hint>Please enter a name</mat-hint>-->
+                </mat-form-field>
+
+            </div>
+            <div>
+                <mat-form-field class="mr-16" appearance="outline">
+                    <mat-label>Description</mat-label>
+                    <input [(ngModel)]="newChannel" matInput placeholder="Enter description">
+                    <!--<mat-hint>Please enter a name</mat-hint>-->
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div mat-dialog-actions>
+            <button mat-button (click)="dialogRef.close()">Cancel</button>
+            <button mat-button (click)="saveUser()" cdkFocusInitial>Save</button>
+        </div>
+
+    </div>
+</div>

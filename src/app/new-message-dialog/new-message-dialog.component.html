@@ -1,0 +1,40 @@
+<div style="background-color: white;">
+    <div style="padding: 20px; position: relative;  border-bottom: 1px solid rgba(155, 97, 97, 0.05);">
+        <h1>Direct message</h1>
+        <div class="direct-message">
+            <div>
+                <span>An:</span>
+                <mat-form-field style="padding-left: 20px;">
+                    <input [(ngModel)]="value" matInput placeholder="@name">
+                </mat-form-field>
+            </div>
+            <button mat-raised-button>
+             new chat
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+<div *ngFor="let user of allUsers" class="router-container">
+    <span>Datum</span>
+    <mat-card style="display: flex; border-radius: 10px;">
+        <img style="width: 40px; border-radius: 80%; " src="assets/img/girl-2.png">
+        <mat-card-content style="padding-left: 15px;">
+            <span style="font-weight: 500;"> Tijana Couturier </span>
+            <div>
+                <span style="color: rgb(163, 167, 167);">Tijana: </span>
+                <span style="color: rgb(163, 167, 167);">Programmieren</span>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+
+<!--
+      <span style="font-weight: 500;"> {{user.firstName}} {{user.lastName}} </span>
+
+      <span style="color: rgb(163, 167, 167);">{{user.firstName}}: </span>
+                <span style="color: rgb(163, 167, 167);">{{user.message}}</span>
+-->
