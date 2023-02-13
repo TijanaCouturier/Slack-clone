@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 
 @Component({
@@ -11,14 +12,24 @@ export class NewChannelDialogComponent implements OnInit {
  
 
   newChannel = '';
+  channelName = '';
+  description = '';
 
-  constructor(public dialogRef: MatDialogRef<NewChannelDialogComponent> ){ }
+  user: any;
+
+  constructor(public dialogRef: MatDialogRef<NewChannelDialogComponent>, private firestore: AngularFirestore,){ }
 
   ngOnInit(): void {
   }
 
-  saveUser(){
-  
+  saveChannel(){
+    this.firestore
+    .collection('channels')
+    .add(this.user.toJSON())
+    .then((result:any) =>{
+      console.log('Adding user finished', result);
+      this.dialogRef.close();
+    });
   }
 
 }

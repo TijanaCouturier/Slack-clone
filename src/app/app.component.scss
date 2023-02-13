@@ -153,6 +153,26 @@ mat-toolbar-row {
     left: 30px;
 }
 
+.search {
+    display: flex;
+    background-color: #5B125C;
+    border-radius: 10px;
+    input {
+        border-radius: 10px;
+        background-color: #5B125C;
+        color: white;
+        padding-left: 10px;
+        border: none;
+        outline: none;
+        height: 30px;
+        width: 200px;
+    }
+    button {
+        background-color: #5B125C;
+        height: 30px;
+    }
+}
+
 
 /*
 .channel-left {
@@ -201,6 +221,9 @@ mat-toolbar-row {
     padding-left: 10px;
     background-color: #3F0E40;
     color: white;
+    &:hover {
+        color: #9c3a9e;
+    }
 }
 
 .mat-tree-node {

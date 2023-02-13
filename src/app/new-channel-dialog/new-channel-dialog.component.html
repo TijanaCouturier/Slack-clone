@@ -6,7 +6,7 @@
             <div>
                 <mat-form-field class="full-width" appearance="outline">
                     <mat-label>Channel Name</mat-label>
-                    <input [(ngModel)]="newChannel" matInput placeholder="Enter channel Name">
+                    <input [(ngModel)]="channelName" matInput placeholder="Enter channel Name">
                     <!--<mat-hint>Please enter a name</mat-hint>-->
                 </mat-form-field>
 
@@ -14,7 +14,7 @@
             <div>
                 <mat-form-field class="mr-16" appearance="outline">
                     <mat-label>Description</mat-label>
-                    <input [(ngModel)]="newChannel" matInput placeholder="Enter description">
+                    <input [(ngModel)]="description" matInput placeholder="Enter description">
                     <!--<mat-hint>Please enter a name</mat-hint>-->
                 </mat-form-field>
             </div>
@@ -22,7 +22,7 @@
 
         <div mat-dialog-actions>
             <button mat-button (click)="dialogRef.close()">Cancel</button>
-            <button mat-button (click)="saveUser()" cdkFocusInitial>Save</button>
+            <button mat-button (click)="saveChannel()" cdkFocusInitial>Save</button>
         </div>
 
     </div>

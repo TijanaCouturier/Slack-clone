@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ChannelComponent } from './channel/channel.component';
 import { ChatComponent } from './chat/chat.component';
-import { DirectivesComponent } from './directives/directives.component';
 import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule} from '@angular/material/toolbar';
@@ -20,6 +19,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatTreeModule} from '@angular/material/tree';
 import {MatCardModule} from '@angular/material/card';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { AngularFireModule } from '@angular/fire/compat';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 //import { QuillModule } from 'ngx-quill';
 
 @NgModule({
@@ -27,7 +31,6 @@ import {MatCardModule} from '@angular/material/card';
     AppComponent,
     ChannelComponent,
     ChatComponent,
-    DirectivesComponent,
     LoginComponent,
     NewChannelDialogComponent,
     NewMessageDialogComponent
@@ -46,6 +49,10 @@ import {MatCardModule} from '@angular/material/card';
     MatMenuModule,
     MatTreeModule,
     MatCardModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirestore(() => getFirestore()),
+    MatCheckboxModule
     //QuillModule.forRoot()
   ],
   providers: [],
