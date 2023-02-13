@@ -47,7 +47,7 @@
                         <!--click - Öffnen channel-->
                         <mat-tree-node routerLink='/channel' routerLinkActive="router-link-active" *matTreeNodeDef="let node" matTreeNodeToggle>
                             <p style="margin-bottom: 0; padding-top: 0px;">#</p>
-                            {{node.name}}
+                            <mat-checkbox class="checklist-leaf-node" (change)="todoItemSelectionToggle($event.checked,node)" [checked]="node.selected">{{node.name}}</mat-checkbox>
                         </mat-tree-node>
 
                         <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
@@ -57,7 +57,9 @@
                                     <mat-icon class="mat-icon-rtl-mirror"> 
                                       {{treeControl.isExpanded(node) ? 'expand_more' : 'arrow_right'}}
                                     </mat-icon>
-                                  </button> {{node.name}}
+                                  </button>
+                                    <mat-checkbox [checked]="node.selected" [indeterminate]="node.indeterminate && !node.selected" (change)="todoItemSelectionToggle($event.checked,node)">
+                                        {{node.name}}</mat-checkbox>
                                 </div>
 
                                 <mat-icon (click)="openDialog()">add</mat-icon>

@@ -15,7 +15,9 @@ interface FoodNode {
   name: string;
   children?: FoodNode[];
   id?: number;
-
+  selected?: boolean;
+  indeterminate?:boolean;
+  parent?:FoodNode
 }
 
 
@@ -55,9 +57,7 @@ export class AppComponent {
   message = '';
   user = new User();
   allUsers = [];
-  public searchparam = "all";
-  public loadMoreParentItem: string | null = null; 
-  public id:number = 0;
+ 
  
 
   treeControl = new NestedTreeControl<FoodNode>(node => node.children);
@@ -66,18 +66,6 @@ export class AppComponent {
   treeControls = new NestedTreeControl<FoodNodes>(node => node.childrens);
   dataSources = new MatTreeNestedDataSource<FoodNodes>();
 
-  newMessages = [
-    {
-      firstName: ''
-    },
-    {
-      lastName: ''
-    },
-    {
-      message: ''
-    }
-
-  ]
  
   constructor(
     public router: Router, public dialog: MatDialog,
@@ -85,11 +73,57 @@ export class AppComponent {
     
   ) {
     this.dataSource.data = TREE_DATA;
+    Object.keys(this.dataSource.data).forEach(x => {
+      this.setParent(this.dataSource.data[x], null);
+    });
     this.dataSources.data = TREE_DATAS;
   }
+  
  
- 
+  setParent(data, parent) {
+    data.parent = parent;
+    if (data.children) {
+      data.children.forEach(x => {
+        this.setParent(x, data);
+      });
+    }
+  }
+
+
   hasChild = (_: number, node: FoodNode) => !!node.children && node.children.length > 0;
+
+  checkAllParents(node) {
+    if (node.parent) {
+      const descendants = this.treeControl.getDescendants(node.parent);
+      node.parent.selected=descendants.every(child => child.selected);
+      node.parent.indeterminate=descendants.some(child => child.selected);
+      this.checkAllParents(node.parent);
+    }
+  }
+
+  todoItemSelectionToggle(checked, node) {
+    node.selected = checked;
+    if (node.children) {
+      node.children.forEach(x => {
+        this.todoItemSelectionToggle(checked, x);
+      });
+    }
+    this.checkAllParents(node);
+  }
+
+  submit() {
+    let result = [];
+    this.dataSource.data.forEach(node => {
+      result = result.concat(
+        this.treeControl
+          .getDescendants(node)
+          .filter(x => x.selected && x.id)
+          .map(x => x.id)
+      );
+    });
+    console.log(result);
+  }
+  
   hasChilds = (_: number, node: FoodNodes) => !!node.childrens && node.childrens.length > 0;
 
   openDialog(){
