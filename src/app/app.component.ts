@@ -1,46 +1,13 @@
-
-
-
-
-
-import { Component } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { NewChannelDialogComponent } from './new-channel-dialog/new-channel-dialog.component';
-import {NestedTreeControl} from '@angular/cdk/tree';
-import {MatTreeNestedDataSource} from '@angular/material/tree';
+//import {NestedTreeControl} from '@angular/cdk/tree';
+//import {MatTreeNestedDataSource} from '@angular/material/tree';
 import { User } from 'src/models/user.class';
+import { Channel } from 'src/models/channel.class';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
-interface FoodNode {
-  name: string;
-  children?: FoodNode[];
-  id?: number;
-  selected?: boolean;
-  indeterminate?:boolean;
-  parent?:FoodNode
-}
-
-
-interface FoodNodes {
-  names: string;
-  childrens?: FoodNodes[];
-}
-
-const TREE_DATA: FoodNode[] = [
-  {
-    name: 'Channels',
-    children: [{name: 'allgemein', id: 1 }, {name: 'javascript', id: 2}, {name: 'angular', id: 3}, {name: 'html-css', id: 4}, {name: 'bewerbung', id: 5}],
-  },
- 
-];
-
-const TREE_DATAS: FoodNodes[] = [
-  {
-    names: 'Directives',
-    childrens: [{names: 'Tijana Couturier'}, {names: 'Anja Huber'}, {names: 'Joachim Müller'}, {names: 'Junus Ergin'}, {names: 'Ben Wunderlich'}],
-  },
- 
-];
 
 @Component({
   selector: 'app-root',
@@ -50,37 +17,77 @@ const TREE_DATAS: FoodNodes[] = [
 
 
 export class AppComponent {
-  title = 'slack';
-  value = '';
-  firstName = '';
-  lastName = '';
-  message = '';
+  channelOpen = true;
+  activeChatChannel = '';
+  channels = [];
+  innerWidth: number;
+  sidenavService: any;
+
+
+
+/*
   user = new User();
-  allUsers = [];
- 
- 
-
-  treeControl = new NestedTreeControl<FoodNode>(node => node.children);
-  dataSource = new MatTreeNestedDataSource<FoodNode>();
-
-  treeControls = new NestedTreeControl<FoodNodes>(node => node.childrens);
-  dataSources = new MatTreeNestedDataSource<FoodNodes>();
-
+  allChannels = [];
+  channel: Channel = new Channel();
+  channelName: string;
+  channelId: string;
+  panelOpenState = false; */
+ // channels: Channel[] = [];
  
   constructor(
-    public router: Router, public dialog: MatDialog,
+    public router: Router, public dialog: MatDialog,  private firestore: AngularFirestore,  
     
     
-  ) {
-    this.dataSource.data = TREE_DATA;
-    Object.keys(this.dataSource.data).forEach(x => {
-      this.setParent(this.dataSource.data[x], null);
-    });
-    this.dataSources.data = TREE_DATAS;
+  ) {}
+
+  ngOnInit(): void {
+    this. loadChannels();
   }
-  
- 
-  setParent(data, parent) {
+
+  openDialog(){
+    this.dialog.open(NewChannelDialogComponent);
+  }
+
+
+  toggleChannelMenu() {
+    if (this.channelOpen) {
+      this.channelOpen = false;
+    }
+    else {
+      this.channelOpen = true;
+    }
+  }
+
+  showActive(value, positionInArray) {
+    this.activeChatChannel = value;
+    if(this.innerWidth < 645){
+      this.sidenavService.closeSidenav();
+    }
+  }
+  loadChannels() {
+    this.firestore
+      .collection('channels')
+      .valueChanges({ idField: 'channelId' })
+      .subscribe((changes: any) => {
+        this.channels = changes;
+      })
+  }
+
+
+}
+
+/*
+ channels = [ //name
+    {channel: 'allgemein' }, //children
+    {channel: 'javascript' },
+    {channel: 'angular' },
+    {channel: 'html-css' },
+    {channel: 'bewerbung' }
+  ]
+*/
+
+/*
+ setParent(data, parent) {
     data.parent = parent;
     if (data.children) {
       data.children.forEach(x => {
@@ -89,10 +96,7 @@ export class AppComponent {
     }
   }
 
-
-  hasChild = (_: number, node: FoodNode) => !!node.children && node.children.length > 0;
-
-  checkAllParents(node) {
+ checkAllParents(node) {
     if (node.parent) {
       const descendants = this.treeControl.getDescendants(node.parent);
       node.parent.selected=descendants.every(child => child.selected);
@@ -123,27 +127,6 @@ export class AppComponent {
     });
     console.log(result);
   }
-  
-  hasChilds = (_: number, node: FoodNodes) => !!node.childrens && node.childrens.length > 0;
-
-  openDialog(){
-    this.dialog.open(NewChannelDialogComponent);
-  }
-
-
- 
-}
-
-
-
-/*
- channels = [ //name
-    {channel: 'allgemein' }, //children
-    {channel: 'javascript' },
-    {channel: 'angular' },
-    {channel: 'html-css' },
-    {channel: 'bewerbung' }
-  ]
 */
 
 /*
@@ -270,8 +253,168 @@ if (treeObj.parentId == null) {
       }
       return false;
     }
-  }
+  }^
+
+    this.firestore
+    .collection('channels')
+    .valueChanges({idField: 'channelId'})
+    .subscribe((changes: any) => {
+      console.log('Received changes from DB_1', changes);
+      this.allChannels = changes;
+    });
  
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*/
+
+
+
+
+/* copy all
+
+interface FoodNode {
+  name: string;
+  children?: FoodNode[];
+  id?: number;
+  selected?: boolean;
+  indeterminate?:boolean;
+  parent?:FoodNode
+}
+
+
+interface FoodNodes {
+  names: string;
+  childrens?: FoodNodes[];
+}
+
+
+
+
+const TREE_DATAS: FoodNodes[] = [
+  {
+    names: 'Directives',
+    childrens: [{names: 'Tijana Couturier'}, {names: 'Anja Huber'}, {names: 'Joachim Müller'}, {names: 'Junus Ergin'}, {names: 'Ben Wunderlich'}],
+  },
+ 
+];
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
+})
+
+
+export class AppComponent {
+  channelOpen = true;
+  activeChatChannel = '';
+  channels = [];
+  innerWidth: number;
+
+
+
+
+  user = new User();
+  allChannels = [];
+  channel: Channel = new Channel();
+  channelName: string;
+  channelId: string;
+  panelOpenState = false;
+ // channels: Channel[] = [];
+  jsondata = {name: 'Channels', children: []};
+  
+ 
+ 
+  treeControl = new NestedTreeControl<FoodNode>(node => node.children);
+  dataSource = new MatTreeNestedDataSource<FoodNode>();
+
+  treeControls = new NestedTreeControl<FoodNodes>(node => node.childrens);
+  dataSources = new MatTreeNestedDataSource<FoodNodes>();
+
+ 
+  constructor(
+    public router: Router, public dialog: MatDialog,  private firestore: AngularFirestore
+    
+    
+  ) {
+    //this.dataSource.data = TREE_DATA;
+    
+  }
+  
+  filterFirstName(ref) : QueryFn{
+    return ref.orderBy('firstName', 'asc');
+ }
+
+
+  ngOnInit(): void {
+    this.reloadChannels();
+    this.dataSources.data = TREE_DATAS;
+  }
+
+ public reloadChannels(){
+    this.jsondata = {name: 'Channels', children: []};
+    this.
+    firestore
+    .collection('channels')
+    .valueChanges()
+    .subscribe((changes: any) => {
+      this.allChannels = changes; 
+      for (let index = 0; index < this.allChannels.length; index++) {
+        this.jsondata.children.push({name: this.allChannels[index].channelName, id:1});
+      }
+      
+      this.setConst();
+    });
+  }
+
+ 
+  setConst () {
+  const TREE_DATA: FoodNode[] = [this.jsondata];
+  this.dataSource.data = TREE_DATA
+  
+  }
+
+  hasChild = (_: number, node: FoodNode) => !!node.children && node.children.length > 0;
+  
+  hasChilds = (_: number, node: FoodNodes) => !!node.childrens && node.childrens.length > 0;
+
+  openDialog(){
+    this.dialog.open(NewChannelDialogComponent);
+  }
+  navigateToRoute(){
+
+  }
+
+  toggleChannelMenu() {
+    if (this.channelOpen) {
+      this.channelOpen = false;
+    }
+    else {
+      this.channelOpen = true;
+    }
+  }
+
+  showActive(value, positionInArray) {
+    this.activeChatChannel = value;
+    if(this.innerWidth < 645){
+     // this.sidenavService.closeSidenav();
+    }
+  }
+
+
+}
 */

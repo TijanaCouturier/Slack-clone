@@ -1,29 +1,66 @@
 <div class="dialog-container">
-
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
     <h1 mat-dialog-title>Create new channel</h1>
     <div mat-dialog-content style="overflow: initial;">
         <div>
-            <div>
-                <mat-form-field class="full-width" appearance="outline">
-                    <mat-label>Channel Name</mat-label>
-                    <input [(ngModel)]="channelName" matInput placeholder="Enter channel Name">
-                    <!--<mat-hint>Please enter a name</mat-hint>-->
-                </mat-form-field>
+            <p>Channels are used by your team to communicate. Ideally, they should be topic-related - #marketing, for example.
+                <div>
 
-            </div>
-            <div>
-                <mat-form-field class="mr-16" appearance="outline">
-                    <mat-label>Description</mat-label>
-                    <input [(ngModel)]="description" matInput placeholder="Enter description">
-                    <!--<mat-hint>Please enter a name</mat-hint>-->
-                </mat-form-field>
-            </div>
+                    <mat-form-field id="title" class="full-width" appearance="outline">
+
+                        <mat-label>Channel Name</mat-label>
+                        <input style="width: 100%;" [(ngModel)]="channel.channelName" name="title" matInput placeholder="Channel Name" maxlength="20" required>
+                        <!--<mat-hint>Please enter a name</mat-hint>-->
+                    </mat-form-field>
+
+                </div>
+                <div>
+                    <mat-form-field id="description" class="mr-16" appearance="outline">
+                        <mat-label>Description</mat-label>
+                        <input [(ngModel)]="channel.description" name="description" matInput placeholder="Enter description">
+                        <!--<mat-hint>Please enter a name</mat-hint>-->
+                    </mat-form-field>
+                </div>
         </div>
 
-        <div mat-dialog-actions>
+
+        <div mat-dialog-actions style="justify-content: end;">
             <button mat-button (click)="dialogRef.close()">Cancel</button>
-            <button mat-button (click)="saveChannel()" cdkFocusInitial>Save</button>
+            <button mat-button cdkFocusInitial (click)="saveChannel()">Save</button>
         </div>
 
     </div>
 </div>
+
+<!--
+    <form [formGroup]="channelForm" (ngSubmit)="onSubmit()" mat-dialog-content style="overflow: initial;">
+        <div>
+            <p>Channels are used by your team to communicate. Ideally, they should be topic-related - #marketing, for example.
+                <div>
+
+                    <mat-form-field class="full-width" appearance="outline">
+
+                        <mat-label>Channel Name</mat-label>
+                        <input style="width: 100%;" formControlName="name" matInput placeholder="Channel Name" maxlength="20">
+                   
+                    </mat-form-field>
+
+                </div>
+                <div>
+                    <mat-form-field class="mr-16" appearance="outline">
+                        <mat-label>Description</mat-label>
+                        <input formControlName="description" matInput placeholder="Enter description">
+               
+                    </mat-form-field>
+                </div>
+        </div>
+
+
+        <div mat-dialog-actions>
+            <button mat-button (click)="dialogRef.close()">Cancel</button>
+            <button mat-button cdkFocusInitial>Save</button>
+        </div>
+
+    </form>
+    
+-->

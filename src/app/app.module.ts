@@ -11,7 +11,7 @@ import { MatToolbarModule} from '@angular/material/toolbar';
 import { MatIconModule} from '@angular/material/icon';
 import { MatSidenavModule} from '@angular/material/sidenav';
 import {MatInputModule} from '@angular/material/input';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import { NewChannelDialogComponent } from './new-channel-dialog/new-channel-dialog.component';
 import { NewMessageDialogComponent } from './new-message-dialog/new-message-dialog.component';
@@ -24,6 +24,11 @@ import { environment } from '../environments/environment';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { ImprintComponent } from './imprint/imprint.component';
+import { DataProtectionComponent } from './data-protection/data-protection.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 //import { QuillModule } from 'ngx-quill';
 
 @NgModule({
@@ -33,7 +38,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     ChatComponent,
     LoginComponent,
     NewChannelDialogComponent,
-    NewMessageDialogComponent
+    NewMessageDialogComponent,
+    ImprintComponent,
+    DataProtectionComponent
   ],
   imports: [
     BrowserModule,
@@ -44,6 +51,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatSidenavModule,
     MatInputModule,
     FormsModule,
+    ReactiveFormsModule,
     MatButtonModule,
     MatDialogModule,
     MatMenuModule,
@@ -52,7 +60,12 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     AngularFireModule.initializeApp(environment.firebase),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
-    MatCheckboxModule
+    provideAuth(() => getAuth()),
+    MatProgressBarModule,
+
+    MatCheckboxModule,
+    MatExpansionModule,
+
     //QuillModule.forRoot()
   ],
   providers: [],

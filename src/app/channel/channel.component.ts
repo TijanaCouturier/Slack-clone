@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore, QueryFn } from '@angular/fire/compat/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialog } from '@angular/material/dialog';
-import { User } from 'src/models/user.class';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Channel } from 'src/models/channel.class';
 
 
 @Component({
@@ -10,36 +11,35 @@ import { User } from 'src/models/user.class';
   styleUrls: ['./channel.component.scss']
 })
 export class ChannelComponent implements OnInit {
-  user = new User();
- // channelId: string;
-  allUsers = [];
-  public loadMoreParentItem: string | null = null; 
-  public id:number = 0;
+ // user = new User();
+  channelId:  string;
+  privateChannel = [];
+  channel: Channel = new Channel();
  
-
-
-  constructor(public dialog: MatDialog, private firestore: AngularFirestore) { 
-
+ 
+  constructor(public dialog: MatDialog, private firestore: AngularFirestore,  public router: Router, private route: ActivatedRoute,) { 
     
   }
-  filterTitle(ref) : QueryFn{
-    return ref.orderBy('firstName', 'asc');
- }
-
 
   ngOnInit(): void {
+   
+    this.route.paramMap.subscribe(paramMap => {
+      this.channelId = paramMap.get('id');
+      this.loadChannel();
+      //this.loadPosts();
+    })
+   
+  }
+
+  loadChannel() {  
     this.firestore
-    .collection('channels', this.filterTitle.bind(this))
-    .valueChanges({idField: 'customIdName'})
-    .subscribe((changes: any) => {
-      console.log('Received changes from DB', changes);
-      this.allUsers = changes;
-    });
+      .collection('channels')
+      .doc(this.channelId)
+      .valueChanges()
+      .subscribe((channel: any) => {
+        this.channel = new Channel(channel);
+      })
   }
 
-
-  commentarRoom(){
-
-  }
 
 }

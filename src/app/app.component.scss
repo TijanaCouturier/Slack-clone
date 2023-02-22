@@ -48,6 +48,37 @@ mat-toolbar-row {
     flex: 1 1 auto;
 }
 
+mat-expansion-panel {
+    background-color: #3F0E40;
+    box-shadow: none !important;
+    &::after {
+        color: white;
+    }
+}
+
+.mat-expansion-indicator::after {
+    color: white;
+}
+
+.mat-expansion-panel-header-title {
+    color: white;
+    &::after {
+        color: white;
+    }
+}
+
+.mat-expansion-panel-body {
+    padding: 0;
+    border: none;
+}
+
+menu-items {
+    li {
+        border-bottom: none;
+        padding: 0;
+    }
+}
+
 .example-form-field {
     background-color: #5B125C;
     height: 32px;
@@ -66,6 +97,10 @@ mat-toolbar-row {
         width: 100%;
         padding: 5px;
     }
+}
+
+.mat-mdc-form-field+.mat-mdc-form-field {
+    margin-left: 8px;
 }
 
 .thread-area {
@@ -230,6 +265,14 @@ mat-toolbar-row {
     min-height: 40px;
     padding-top: 0 !important;
     margin-bottom: 0;
+    color: white;
+}
+
+.mat-expansion-panel-header-description,
+.mat-expansion-indicator::after {
+    &::after {
+        color: white;
+    }
 }
 
 .direct-message {
