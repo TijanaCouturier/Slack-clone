@@ -5,14 +5,12 @@
 
     <div>
         <div class="search">
-            <input>
+            <input [(ngModel)]="searchValue">
             <button matSuffix mat-icon-button>
              <mat-icon>search</mat-icon>
             </button>
         </div>
     </div>
-
-
 
 
     <button mat-button [matMenuTriggerFor]="beforeMenu"> <img src="assets/img/girl-2.png"></button>
@@ -29,7 +27,7 @@
 <mat-drawer-container class="mat-drawer-container" autosize>
     <mat-drawer #drawer class="sidenav" [opened]="true" mode="side">
         <div class="h1">
-            <h1 style="font-size: 22px;">Developer Akademie</h1>
+            <h2 style="font-size: 20px;">Developer Akademie</h2>
         </div>
 
         <div class="thread-area">
@@ -51,8 +49,8 @@
                             <mat-icon fontIcon="add" (click)="openDialog()">add</mat-icon>
                         </div>
                     </div>
-                    <div style="padding-top: 10px;" *ngIf="channelOpen">
-                        <div *ngFor="let channel of channels, let i = index">
+                    <div *ngIf="channelOpen">
+                        <div style="max-height: 35px;" *ngFor="let channel of channels, let i = index">
                             <div style="display: flex; align-items: center; padding-left: 7px;" [ngClass]="{'active-chatroom' : activeChatChannel == ('channel' + i) }" (click)="showActive('channel' + i, i)" [routerLink]="['/channel/' + channel.channelId]" [queryParams]="{sendedPostID: ''}">
                                 <p>#</p>
                                 <span>{{ channel.channelName }}</span>
@@ -81,8 +79,8 @@
                             <mat-icon fontIcon="add" (click)="openDialog()">add</mat-icon>
                         </div>
                     </div>
-                    <div style="padding-top: 10px;" *ngIf="channelOpen">
-                        <div *ngFor="let channel of channels, let i = index">
+                    <div *ngIf="channelOpen">
+                        <div style="max-height: 35px;" *ngFor="let channel of channels, let i = index">
                             <div style="display: flex; align-items: center; padding-left: 7px;" [ngClass]="{'active-chatroom' : activeChatChannel == ('channel' + i) }" (click)="showActive('channel' + i, i)" [routerLink]="['/channel/' + channel.channelId]" [queryParams]="{sendedPostID: ''}">
                                 <p>#</p>
                                 <span>{{ channel.channelName }}</span>
@@ -113,12 +111,12 @@
 
     </mat-drawer>
 
-    <div>
+    <mat-drawer-content>
         <router-outlet>
 
             <!--<quill-editor>sgdsd</quill-editor>-->
         </router-outlet>
-    </div>
+    </mat-drawer-content>
 
 </mat-drawer-container>
 

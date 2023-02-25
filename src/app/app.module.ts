@@ -29,6 +29,11 @@ import { DataProtectionComponent } from './data-protection/data-protection.compo
 import {MatExpansionModule} from '@angular/material/expansion';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { DialogEditChannelComponent } from './dialog-edit-channel/dialog-edit-channel.component';
+import { HttpClientModule} from '@angular/common/http';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
+
 //import { QuillModule } from 'ngx-quill';
 
 @NgModule({
@@ -40,7 +45,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     NewChannelDialogComponent,
     NewMessageDialogComponent,
     ImprintComponent,
-    DataProtectionComponent
+    DataProtectionComponent,
+    DialogEditChannelComponent
   ],
   imports: [
     BrowserModule,
@@ -62,11 +68,12 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()),
     MatProgressBarModule,
-
+    HttpClientModule, 
+    AngularEditorModule,
     MatCheckboxModule,
     MatExpansionModule,
-
-    //QuillModule.forRoot()
+    PickerModule
+  //  QuillModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

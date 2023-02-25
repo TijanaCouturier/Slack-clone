@@ -3,7 +3,7 @@ export class Channel {
     channelName: string;
     channelId: string;
     description: string;
-    date: Date;
+    date: number;
     category: string;
   //  creator: string;
 

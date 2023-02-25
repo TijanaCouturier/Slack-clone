@@ -1,31 +1,190 @@
-<div style="height: 100%; position: relative; padding: 30px; display: flex; flex-direction: column;">
-    <div style="display: flex; align-items: center; cursor: pointer; padding-right: 15px;">
+<mat-drawer-container style="height: 100%; width: 100%;" class="mat-drawer-container" autosize>
+    <div style="height: 92%;  position: relative; padding: 30px; display: flex; flex-direction: column;">
+        <div (click)=" editMenu()" style="display: flex; align-items: center; cursor: pointer; padding-right: 15px;">
 
-        <span style="font-size: 22px; padding-right: 5px; margin: 0 0 11px;">#</span>
-        <h1>{{channel.channelName}}</h1>
-    </div>
-    <mat-card style="display: flex; border-radius: 10px; padding-right: 20px;">
-        <div style="padding-right: 15px;">
-            <img style="width: 40px; border-radius: 80%; " src="assets/img/girl-2.png">
+            <span style="font-size: 22px; padding-right: 5px; margin: 0 0 11px;">#</span>
+            <h1>{{channel.channelName}}</h1>
+        </div>
+        <div style="overflow-x: hidden;
+        overflow-y: auto;
+        height: calc(100% - 200px);">
+            <mat-card style="display: flex; border-radius: 10px; padding-right: 20px;">
+                <div style="padding-right: 15px;">
+                    <img style="width: 40px; border-radius: 80%; " src="assets/img/girl-2.png">
+                </div>
+
+                <div>
+                    <div>
+                        <span style="font-weight: 500;"> Tijana Couturier </span>
+                        <span>14/2/2023   18:25 Uhr</span>
+                    </div>
+                    <div>
+                        <span>Mein erster Commentar</span>
+                    </div>
+
+                    <div>0 Commentar</div>
+                </div>
+
+            </mat-card>
         </div>
 
+        <mat-accordion style="    position: absolute;
+        bottom: 30px;
+        width: 95%;
+    ">
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        New Message
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+
+
+                <mat-card>
+
+                    <angular-editor [(ngModel)]="message" [config]="editorConfig">
+                        <ng-template #customButtons>
+                            <ae-toolbar-set>
+                                <ae-button iconClass="fa fa-sharp fa-close" [matMenuTriggerFor]="emoijs">
+
+                                </ae-button>
+                                <ae-button iconClass="fa fa-sharp fa-image" (buttonClick)="fInput.click()">
+
+                                </ae-button>
+                            </ae-toolbar-set>
+                        </ng-template>
+                    </angular-editor>
+
+
+                    <input #fInput type="file" style="visibility: hidden;" (change)="upload($event)" accept=".png,.jpg">
+
+
+                    <div class="upload-image-container" *ngIf="imageURL">
+                        <div>
+                            <img class="upload-img" [src]="imageURL">
+                            <div (click)="discardUpload()" class="close">
+                                <mat-icon>close</mat-icon>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="under">
+                        <button style="color: white; background-color: rgb(25, 125, 48); border: none;" (click)="getMessage()" class="send-btn" *ngIf="(message || imageURL)">
+                          <mat-icon> send</mat-icon>
+                        </button>
+                    </div>
+
+                    <mat-menu #emoijs="matMenu" xPosition="before">
+                        <emoji-mart appClickStopPropagation (emojiSelect)="handleClick($event)" [i18n]="{
+                        search: 'Recherche',
+                        categories: { search: 'Résultats de recherche', recent: 'Récents' }}">
+                        </emoji-mart>
+                    </mat-menu>
+
+                </mat-card>
+
+                <!--
+                    format_italic
+                     format_bold 
+                   format_underlined
+                   refresh
+                   replay
+                   restart_alt
+                   image
+                  add_photo_alternate
+                  mood
+                  sentiment_satisfied
+                  account_balance
+                  code
+                  html
+                  strikethrough_s
+                  format_list_bulleted
+                  arrow_forward
+
+                    attach_file_add
+                    attach_file_add
+
+
+                    tag
+                    edit
+                    <span class="material-symbols-outlined">
+                       navigate_next
+                   </span>
+                -->
+
+                <!-- Emojis
+                              <emoji-mart title="Pick your emoji…" emoji="point_up"></emoji-mart>
+                <emoji-mart title="Pick your emoji…" emoji="point_up"></emoji-mart>
+                <emoji-mart></emoji-mart>
+                <emoji-mart (emojiClick)="addEmoji($event)"></emoji-mart>
+                <emoji-mart [style]="{ position: 'absolute', bottom: '20px', right: '20px' }"></emoji-mart>
+                <emoji-mart [i18n]="{ search: 'Recherche', categories: { search: 'Résultats de recherche', recent: 'Récents' } }"></emoji-mart>
+
+                -->
+                <!--  <mat-card id="chatcard">
+    <angular-editor [(ngModel)]="message" [config]="editorConfig">
+        <ng-template #customButtons>
+            <ae-toolbar-set>
+                <ae-button iconClass="fa fa-smile-o" title="Emoijs" [matMenuTriggerFor]="emoij">
+                </ae-button>
+                <ae-button iconClass="fa fa-sharp fa-image" (buttonClick)="fInput.click()">
+                </ae-button>
+            </ae-toolbar-set>
+        </ng-template>
+    </angular-editor>
+    <input #fInput type="file" style="visibility: hidden;" (change)="upload($event)" accept=".png,.jpg">
+
+    <div class="upload-image-container" *ngIf="imageURL">
         <div>
-            <div>
-                <span style="font-weight: 500;"> Tijana Couturier </span>
-                <span>14/2/2023   18:25 Uhr</span>
-            </div>
-            <div>
-                <span>Mein erster Commentar</span>
-            </div>
-
-            <div>0 Commentar</div>
+            <img [src]="imageURL" class="upload-img">
+            <div (click)="discardUpload()" class="close"><img src="assets/svg/color_d1d2d3/x.svg"></div>
         </div>
+    </div>
 
-    </mat-card>
+    <div class="under">
+        <button (click)="getMessage()" class="send-btn" *ngIf="(message || imageURL)">
+            <img src="assets/svg/color_939295/send.svg" alt="">
+        </button>
+    </div>
 
+    <mat-menu #emoij="matMenu" xPosition="before">
+        <emoji-mart appClickStopPropagation (emojiSelect)="handleClick($event)" [i18n]="{
+        search: 'Recherche',
+        categories: { search: 'Résultats de recherche', recent: 'Récents' }}">
+        </emoji-mart>
+    </mat-menu>
 
+</mat-card>
 
-</div>
+-->
+                <!--<nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand ml-auto mr-auto" href="#">Quill JS Editor with Angular</a>
+            </nav>
+
+            <div class="container">
+                <div class="row pt-5">
+                    <div class="col-md-8">
+                        <form [formGroup]="editorForm" (ngSubmit)="onSubmit()">
+                            <div class="form-group">
+                                <label for="editor">
+                          <h3>Editor</h3>
+                        </label>
+                                <quill-editor></quill-editor>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-4 bg-light p-4">
+                        <h3>Output</h3>
+                        <p class="my-5"></p>
+                    </div>
+                </div>
+            </div> -->
+                <!-- <app-comment-box ></app-comment-box>-->
+            </mat-expansion-panel>
+        </mat-accordion>
+
+    </div>
+</mat-drawer-container>
 
 <!--
      <img style="width: 40px;" src="assets/img/girl-3.png">

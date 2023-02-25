@@ -1,10 +1,16 @@
 /* You can add global styles to this file, and also import other style files 
 @import './node_modules/quill/dist/quill.core.css';
 @import './node_modules/quill/dist/quill.bubble.css';
-@import './node_modules/quill/dist/quill.snow.css';
+
+@import '~quill/dist/quill.core.css';
+@import '~quill/dist/quill.snow.css';
+html,
 */
 
-html,
+//@import '~@ctrl/ngx-emoji-mart/picker.css';
+//@import "./../node_modules/@ctrl/ngx-emoji-mart/picker.css";
+@import './assets/font.css';
+@import './assets/material-icon.css';
 body {
     height: 100%;
 }
@@ -13,4 +19,9 @@ body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
     color: white;
+}
+
+angular-editor-toolbar button i {
+    font-family: FontAwesome !important;
+    color: #474d6d !important;
 }

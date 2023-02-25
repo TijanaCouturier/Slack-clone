@@ -1,0 +1,42 @@
+<div class="dialog-container">
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+    <h1 mat-dialog-title>Create new channel</h1>
+    <div mat-dialog-content style="overflow: initial; width: 300px;">
+        <div>
+            <div>
+                <mat-form-field id="title" class="full-width" appearance="outline">
+
+                    <mat-label>Change channel name</mat-label>
+                    <input style="width: 100%;" [(ngModel)]="channel.channelName" name="title" matInput placeholder="Channel Name" maxlength="20" required>
+                    <!--<mat-hint>Please enter a name</mat-hint>
+                         <mat-icon> edit</mat-icon>
+                    -->
+
+                </mat-form-field>
+
+
+            </div>
+            <div>
+                <mat-form-field id="description" class="mr-16" appearance="outline">
+                    <mat-label>Change description</mat-label>
+                    <input [(ngModel)]="channel.description" name="description" matInput placeholder="Enter description">
+                    <!--<mat-hint>Please enter a name</mat-hint>-->
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field id="date" class="mr-16" appearance="outline">
+                    <mat-label>Created by</mat-label>
+                    <input name="date" matInput>{{ date | date: "dd.MM.yyyy" }}
+                    <!--<mat-hint>Please enter a name</mat-hint>-->
+                </mat-form-field>
+            </div>
+        </div>
+
+
+        <div mat-dialog-actions style="justify-content: end;">
+            <button mat-button (click)="dialogRef.close()">Cancel</button>
+            <button mat-button cdkFocusInitial (click)="saveChannel()">Save</button>
+        </div>
+
+    </div>
+</div>

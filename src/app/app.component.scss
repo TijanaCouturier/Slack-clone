@@ -1,7 +1,7 @@
 mat-drawer-container {
     width: 100vw;
     max-width: 100%;
-    height: calc(100vh - 50px);
+    height: calc(100vh - 60px);
 }
 
 mat-icon {
@@ -10,9 +10,10 @@ mat-icon {
 }
 
 .sidenav {
-    width: 300px;
+    width: 240px;
     background-color: #3F0E40;
     color: white;
+    height: calc(100vh - 60px);
 }
 
 mat-toolbar,

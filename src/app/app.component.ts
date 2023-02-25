@@ -1,12 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { NewChannelDialogComponent } from './new-channel-dialog/new-channel-dialog.component';
-//import {NestedTreeControl} from '@angular/cdk/tree';
-//import {MatTreeNestedDataSource} from '@angular/material/tree';
-import { User } from 'src/models/user.class';
-import { Channel } from 'src/models/channel.class';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 @Component({
@@ -22,7 +19,7 @@ export class AppComponent {
   channels = [];
   innerWidth: number;
   sidenavService: any;
-
+  searchValue = '';
 
 
 /*
@@ -46,6 +43,13 @@ export class AppComponent {
 
   openDialog(){
     this.dialog.open(NewChannelDialogComponent);
+  }
+  @Output()
+  searchTextChanges: EventEmitter<string> = new EventEmitter<string>();
+
+
+  onSearchTextChanges(){
+    this.searchTextChanges.emit(this.searchValue);
   }
 
 
