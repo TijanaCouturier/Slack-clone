@@ -33,6 +33,8 @@ import { DialogEditChannelComponent } from './dialog-edit-channel/dialog-edit-ch
 import { HttpClientModule} from '@angular/common/http';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
+import { SidenavComponent } from './sidenav/sidenav.component';
+
 
 //import { QuillModule } from 'ngx-quill';
 
@@ -46,7 +48,8 @@ import { PickerModule } from '@ctrl/ngx-emoji-mart';
     NewMessageDialogComponent,
     ImprintComponent,
     DataProtectionComponent,
-    DialogEditChannelComponent
+    DialogEditChannelComponent,
+    SidenavComponent
   ],
   imports: [
     BrowserModule,

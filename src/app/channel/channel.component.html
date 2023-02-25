@@ -1,16 +1,14 @@
-<mat-drawer-container style="height: 100%; width: 100%;" class="mat-drawer-container" autosize>
-    <div style="height: 92%;  position: relative; padding: 30px; display: flex; flex-direction: column;">
-        <div (click)=" editMenu()" style="display: flex; align-items: center; cursor: pointer; padding-right: 15px;">
+<mat-drawer-container class="mat-drawer-container" autosize>
+    <div class="channel">
+        <div (click)=" editMenu()" class="editMenu">
 
-            <span style="font-size: 22px; padding-right: 5px; margin: 0 0 11px;">#</span>
+            <span class="channel-icon"><mat-icon>tag</mat-icon></span>
             <h1>{{channel.channelName}}</h1>
         </div>
-        <div style="overflow-x: hidden;
-        overflow-y: auto;
-        height: calc(100% - 200px);">
-            <mat-card style="display: flex; border-radius: 10px; padding-right: 20px;">
+        <div class="overflow">
+            <mat-card>
                 <div style="padding-right: 15px;">
-                    <img style="width: 40px; border-radius: 80%; " src="assets/img/girl-2.png">
+                    <img src="assets/img/girl-2.png">
                 </div>
 
                 <div>
@@ -28,62 +26,56 @@
             </mat-card>
         </div>
 
-        <mat-accordion style="    position: absolute;
-        bottom: 30px;
-        width: 95%;
-    ">
+        <!--  <mat-accordion>
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                 <mat-expansion-panel-header>
                     <mat-panel-title>
                         New Message
                     </mat-panel-title>
-                </mat-expansion-panel-header>
+                </mat-expansion-panel-header>-->
+        <mat-card id="chatcard" class="editor">
+            <angular-editor [(ngModel)]="message" [config]="editorConfig">
+                <ng-template #customButtons>
+                    <ae-toolbar-set>
+                        <ae-button iconClass="fa fa-sharp fa-close" [matMenuTriggerFor]="emoijs">
+
+                        </ae-button>
+                        <ae-button iconClass="fa fa-sharp fa-image" (buttonClick)="fInput.click()">
+
+                        </ae-button>
+                    </ae-toolbar-set>
+                </ng-template>
+            </angular-editor>
 
 
-                <mat-card>
-
-                    <angular-editor [(ngModel)]="message" [config]="editorConfig">
-                        <ng-template #customButtons>
-                            <ae-toolbar-set>
-                                <ae-button iconClass="fa fa-sharp fa-close" [matMenuTriggerFor]="emoijs">
-
-                                </ae-button>
-                                <ae-button iconClass="fa fa-sharp fa-image" (buttonClick)="fInput.click()">
-
-                                </ae-button>
-                            </ae-toolbar-set>
-                        </ng-template>
-                    </angular-editor>
+            <input class="no-outline" #fInput type="file" style="visibility: hidden; outline: hidden;" (change)="upload($event)" accept=".png,.jpg">
 
 
-                    <input #fInput type="file" style="visibility: hidden;" (change)="upload($event)" accept=".png,.jpg">
-
-
-                    <div class="upload-image-container" *ngIf="imageURL">
-                        <div>
-                            <img class="upload-img" [src]="imageURL">
-                            <div (click)="discardUpload()" class="close">
-                                <mat-icon>close</mat-icon>
-                            </div>
-                        </div>
+            <div class="upload-image-container" *ngIf="imageURL">
+                <div>
+                    <img class="upload-img" [src]="imageURL">
+                    <div (click)="discardUpload()" class="close">
+                        <mat-icon>close</mat-icon>
                     </div>
+                </div>
+            </div>
 
-                    <div class="under">
-                        <button style="color: white; background-color: rgb(25, 125, 48); border: none;" (click)="getMessage()" class="send-btn" *ngIf="(message || imageURL)">
-                          <mat-icon> send</mat-icon>
-                        </button>
-                    </div>
+            <div class="under">
+                <button (click)="getMessage()" class="send-btn" *ngIf="(message || imageURL)">
+                    <mat-icon> send</mat-icon>
+                </button>
+            </div>
 
-                    <mat-menu #emoijs="matMenu" xPosition="before">
-                        <emoji-mart appClickStopPropagation (emojiSelect)="handleClick($event)" [i18n]="{
+            <mat-menu #emoijs="matMenu" xPosition="before">
+                <emoji-mart appClickStopPropagation (emojiSelect)="handleClick($event)" [i18n]="{
                         search: 'Recherche',
                         categories: { search: 'Résultats de recherche', recent: 'Récents' }}">
-                        </emoji-mart>
-                    </mat-menu>
+                </emoji-mart>
+            </mat-menu>
 
-                </mat-card>
+        </mat-card>
 
-                <!--
+        <!--
                     format_italic
                      format_bold 
                    format_underlined
@@ -112,7 +104,7 @@
                    </span>
                 -->
 
-                <!-- Emojis
+        <!-- Emojis
                               <emoji-mart title="Pick your emoji…" emoji="point_up"></emoji-mart>
                 <emoji-mart title="Pick your emoji…" emoji="point_up"></emoji-mart>
                 <emoji-mart></emoji-mart>
@@ -121,7 +113,7 @@
                 <emoji-mart [i18n]="{ search: 'Recherche', categories: { search: 'Résultats de recherche', recent: 'Récents' } }"></emoji-mart>
 
                 -->
-                <!--  <mat-card id="chatcard">
+        <!--  <mat-card id="chatcard">
     <angular-editor [(ngModel)]="message" [config]="editorConfig">
         <ng-template #customButtons>
             <ae-toolbar-set>
@@ -157,7 +149,7 @@
 </mat-card>
 
 -->
-                <!--<nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <!--<nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand ml-auto mr-auto" href="#">Quill JS Editor with Angular</a>
             </nav>
 
@@ -179,14 +171,14 @@
                     </div>
                 </div>
             </div> -->
-                <!-- <app-comment-box ></app-comment-box>-->
+        <!-- <app-comment-box ></app-comment-box>
             </mat-expansion-panel>
         </mat-accordion>
 
     </div>
-</mat-drawer-container>
+</mat-drawer-container> -->
 
-<!--
+        <!--
      <img style="width: 40px;" src="assets/img/girl-3.png">
 
 

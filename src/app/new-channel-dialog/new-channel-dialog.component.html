@@ -1,13 +1,11 @@
 <div class="dialog-container">
     <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
     <h1 mat-dialog-title>Create new channel</h1>
-    <div mat-dialog-content style="overflow: initial;">
+    <div mat-dialog-content>
         <div>
             <p>Channels are used by your team to communicate. Ideally, they should be topic-related - #marketing, for example.
                 <div>
-
                     <mat-form-field id="title" class="full-width" appearance="outline">
-
                         <mat-label>Channel Name</mat-label>
                         <input style="width: 100%;" [(ngModel)]="channel.channelName" name="title" matInput placeholder="Channel Name" maxlength="20" required>
                         <!--<mat-hint>Please enter a name</mat-hint>-->
@@ -24,7 +22,7 @@
         </div>
 
 
-        <div mat-dialog-actions style="justify-content: end;">
+        <div mat-dialog-actions>
             <button mat-button (click)="dialogRef.close()">Cancel</button>
             <button mat-button cdkFocusInitial (click)="saveChannel()">Save</button>
         </div>

@@ -1,0 +1,25 @@
+.full-width {
+    input {
+        width: 100%;
+    }
+}
+
+.mat-dialog-content {
+    overflow: initial;
+    width: 300px;
+}
+
+.mat-form-field {
+    width: 100%;
+}
+
+.done-btn {
+    background-color: rgb(85, 24, 86);
+    // background-color: #3F0E40;
+    color: white;
+    margin-left: 20px;
+    min-width: 75px;
+    &:hover {
+        background-color: rgb(139, 58, 140);
+    }
+}

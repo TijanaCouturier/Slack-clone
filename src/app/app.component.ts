@@ -1,9 +1,10 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { NewChannelDialogComponent } from './new-channel-dialog/new-channel-dialog.component';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { NewChannelDialogComponent } from './new-channel-dialog/new-channel-dialog.component';
+
 
 
 @Component({
@@ -25,7 +26,7 @@ export class AppComponent {
 /*
   user = new User();
   allChannels = [];
-  channel: Channel = new Channel();
+  channel: Channel = new Channel();dr
   channelName: string;
   channelId: string;
   panelOpenState = false; */
@@ -33,7 +34,6 @@ export class AppComponent {
  
   constructor(
     public router: Router, public dialog: MatDialog,  private firestore: AngularFirestore,  
-    
     
   ) {}
 
@@ -44,10 +44,11 @@ export class AppComponent {
   openDialog(){
     this.dialog.open(NewChannelDialogComponent);
   }
+
   @Output()
   searchTextChanges: EventEmitter<string> = new EventEmitter<string>();
 
-
+  
   onSearchTextChanges(){
     this.searchTextChanges.emit(this.searchValue);
   }

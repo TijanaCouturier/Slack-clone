@@ -8,7 +8,7 @@ html,
 */
 
 //@import '~@ctrl/ngx-emoji-mart/picker.css';
-//@import "./../node_modules/@ctrl/ngx-emoji-mart/picker.css";
+@import "./../node_modules/@ctrl/ngx-emoji-mart/picker.css";
 @import './assets/font.css';
 @import './assets/material-icon.css';
 body {
@@ -21,7 +21,20 @@ body {
     color: white;
 }
 
-angular-editor-toolbar button i {
+.angular-editor-toolbar button i {
     font-family: FontAwesome !important;
     color: #474d6d !important;
+}
+
+textarea {
+    margin-top: 10px;
+    border: none;
+    outline: none !important;
+    resize: none;
+    width: 100%;
+}
+
+.angular-editor-textarea {
+    resize: none!important;
+    border: none!important;
 }
