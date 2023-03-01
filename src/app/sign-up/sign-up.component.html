@@ -5,9 +5,13 @@
                 <img mat-card-avatar src="./assets/img/slack.png">
                 <mat-card-title>Slack</mat-card-title>
             </mat-card-header>
-            <mat-card-subtitle>Login</mat-card-subtitle>
+            <mat-card-subtitle>SignUp</mat-card-subtitle>
             <mat-card-content>
-                <form [formGroup]="loginForm" class="example-form" (ngSubmit)="login()">
+                <form [formGroup]="signUpForm" class="example-form" (ngSubmit)="signUp()">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Enter your username</mat-label>
+                        <input type="text" formControlName="name" matInput>
+                    </mat-form-field>
                     <mat-form-field appearance="fill">
                         <mat-label>Enter your email</mat-label>
                         <input type="email" formControlName="email" matInput>
@@ -19,15 +23,15 @@
                           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                         </button>
                     </mat-form-field>
-                    <button class="form-btn" mat-raised-button color="primary">Login</button>
+                    <button class="form-btn" mat-raised-button color="primary">Signup</button>
                 </form>
                 <div class="access-links">
                     <a href="reset">Forgot Password</a>
                     <a href="dashboard">Guest Login</a>
                 </div>
                 <div class="access-login">
-                    <span><i>Don´t have an account?</i></span>
-                    <a href="sign-up">Sign Up</a>
+                    <span><i>Already have an account?</i></span>
+                    <a href="login">Login</a>
                 </div>
             </mat-card-content>
         </mat-card>

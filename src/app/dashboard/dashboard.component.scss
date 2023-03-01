@@ -1,5 +1,3 @@
-/* Das
-
 mat-drawer-container {
     width: 100vw;
     max-width: 100%;
@@ -16,6 +14,7 @@ mat-icon {
     background-color: #3F0E40;
     color: white;
     height: calc(100vh - 60px);
+    padding-bottom: 85px;
 }
 
 mat-toolbar,
@@ -45,6 +44,7 @@ mat-toolbar-row {
     border-top: 1px solid rgb(85, 24, 86);
     height: 20px;
     padding: 20px;
+    white-space: nowrap;
 }
 
 h2 {
@@ -147,6 +147,7 @@ menu-items {
     display: flex;
     align-items: center;
     padding-top: 10px;
+    white-space: nowrap;
     mat-icon {
         background-color: rgb(161, 97, 163);
         border-radius: 100%;
@@ -231,10 +232,6 @@ menu-items {
         height: 30px;
     }
 }
-
-
-
-*/
 
 
 /*

@@ -15,10 +15,15 @@ body {
     height: 100%;
 }
 
-body {
+body,
+html {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
     color: white;
+    overflow-x: hidden;
+    overflow-y: auto;
+    // overflow-y: scroll;
+    //height: calc(100% - 175px);
 }
 
 .angular-editor-toolbar button i {
@@ -34,7 +39,58 @@ textarea {
     width: 100%;
 }
 
+.btn-unset {
+    border: unset;
+    background: none;
+    padding: 0;
+}
+
 .angular-editor-textarea {
     resize: none!important;
     border: none!important;
+    &::after {
+        background-color: rgb(212, 198, 212) !important;
+        content: none !important;
+        width: 0px !important;
+    }
+}
+
+.angular-editor-toolbar {
+    background-color: rgb(212, 198, 212) !important;
+    border: none !important;
+}
+
+emoji-mart.section {
+    width: 260px !important;
+}
+
+
+/* width */
+
+ ::-webkit-scrollbar {
+    width: 10px;
+}
+
+
+/* Track 
+
+ ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+*/
+
+
+/* Handle */
+
+ ::-webkit-scrollbar-thumb {
+    background: #575151;
+    border-radius: 10px;
+}
+
+
+/* Handle on hover */
+
+ ::-webkit-scrollbar-thumb:hover {
+    background: #393939;
 }

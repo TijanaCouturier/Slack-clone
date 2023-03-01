@@ -34,8 +34,9 @@ textarea {
 
 .overflow {
     overflow-x: hidden;
-    overflow-y: auto;
-    height: calc(100% - 200px);
+    // overflow-y: auto;
+    overflow-y: scroll;
+    height: calc(100% - 175px);
     mat-card {
         display: flex;
         border-radius: 10px;
@@ -64,33 +65,10 @@ textarea {
     }
 }
 
-.angular-editor-toolbar {
-    background: unset !important;
-}
-
-.angular-editor,
-.angular-editor-textarea,
-.angular-editor-wrapper {
-    input {
-        border: none !important;
-    }
-    border: none !important;
-}
-
-.angular-editor[_ngcontent-iok-c123] .angular-editor-wrapper[_ngcontent-iok-c123] .angular-editor-textarea[_ngcontent-iok-c123] {
-    input {
-        border: none !important;
-    }
-}
-
-.angular-editor-toolbar {
-    background-color: rgb(85, 24, 86) !important;
-    border: none;
-}
-
 .editor {
-    //  background-color: rgb(161, 97, 163);
+    //background-color: rgb(161, 97, 163);
     //  background-color: rgb(245, 245, 245);
+    background-color: rgb(212, 198, 212);
     border: 1px solid;
     input {
         margin-top: 10px;
@@ -99,31 +77,6 @@ textarea {
         resize: none;
         width: 100%;
     }
-    angular-editor-toolbar {
-        background-color: rgb(85, 24, 86) !important;
-        border: none;
-    }
-    .angular-editor-textarea {
-        margin-top: 10px;
-        border: none;
-        outline: none !important;
-        resize: none;
-        width: 100%;
-    }
-    input {
-        border-top-style: hidden;
-        border-right-style: hidden;
-        border-left-style: hidden;
-        border-bottom-style: groove;
-    }
-}
-
-.angular-editor-wrapper {
-    outline: none;
-}
-
-.no-outline {
-    outline: none;
 }
 
 .angular-editor-toolbar {

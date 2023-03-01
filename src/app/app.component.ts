@@ -1,3 +1,23 @@
+import { Component} from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
+})
+
+
+export class AppComponent {
+
+  constructor() {}
+
+  ngOnInit(): void {
+  }
+
+}
+
+
+/* Das
 import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -23,6 +43,10 @@ export class AppComponent {
   searchValue = '';
 
 
+*/
+
+
+
 /*
   user = new User();
   allChannels = [];
@@ -31,6 +55,13 @@ export class AppComponent {
   channelId: string;
   panelOpenState = false; */
  // channels: Channel[] = [];
+ 
+
+
+
+
+
+/* Das
  
   constructor(
     public router: Router, public dialog: MatDialog,  private firestore: AngularFirestore,  
@@ -80,6 +111,15 @@ export class AppComponent {
 
 
 }
+
+*/
+
+
+
+
+
+
+
 
 /*
  channels = [ //name

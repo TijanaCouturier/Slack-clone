@@ -34,6 +34,9 @@ import { HttpClientModule} from '@angular/common/http';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { SidenavComponent } from './sidenav/sidenav.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+
 
 
 //import { QuillModule } from 'ngx-quill';
@@ -49,7 +52,10 @@ import { SidenavComponent } from './sidenav/sidenav.component';
     ImprintComponent,
     DataProtectionComponent,
     DialogEditChannelComponent,
-    SidenavComponent
+    SidenavComponent,
+    DashboardComponent,
+    SignUpComponent
+
   ],
   imports: [
     BrowserModule,
