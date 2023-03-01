@@ -1,4 +1,58 @@
+<!--
 <mat-card style="display: flex; border-radius: 10px;">
     <img style="width: 40px; border-radius: 80%; " src="assets/img/girl-2.png">
     <span style="font-weight: 500;"> Leon </span>
 </mat-card>
+-->
+
+
+
+<mat-drawer-container class="chat-container">
+    <mat-drawer-content class="chat-container">
+        <mat-card style="display: flex; border-radius: 10px;">
+            <img style="width: 40px; border-radius: 80%; " src="assets/img/girl-2.png">
+            <span style="font-weight: 500;"> Leon </span>
+        </mat-card>
+        <mat-card id="chatcard" class="editor">
+            <angular-editor [(ngModel)]="message" [config]="editorConfig">
+                <ng-template #customButtons>
+                    <ae-toolbar-set>
+                        <ae-button iconClass="fa fa-sharp fa-close" [matMenuTriggerFor]="emoijs">
+
+                        </ae-button>
+                        <ae-button iconClass="fa fa-sharp fa-image" (buttonClick)="fInput.click()">
+
+                        </ae-button>
+                    </ae-toolbar-set>
+                </ng-template>
+            </angular-editor>
+
+
+            <input class="no-outline" #fInput type="file" style="visibility: hidden; outline: hidden;" (change)="upload($event)" accept=".png,.jpg">
+
+
+            <div class="upload-image-container" *ngIf="imageURL">
+                <div>
+                    <img class="upload-img" [src]="imageURL">
+                    <div (click)="discardUpload()" class="close">
+                        <mat-icon>close</mat-icon>
+                    </div>
+                </div>
+            </div>
+
+            <div class="under">
+                <button (click)="getMessage()" class="send-btn" *ngIf="(message || imageURL)">
+                    <mat-icon> send</mat-icon>
+                </button>
+            </div>
+
+            <mat-menu #emoijs="matMenu" xPosition="before">
+                <emoji-mart appClickStopPropagation (emojiSelect)="handleClick($event)" [i18n]="{
+                        search: 'Recherche',
+                        categories: { search: 'Résultats de recherche', recent: 'Récents' }}">
+                </emoji-mart>
+            </mat-menu>
+
+        </mat-card>
+    </mat-drawer-content>
+</mat-drawer-container>
