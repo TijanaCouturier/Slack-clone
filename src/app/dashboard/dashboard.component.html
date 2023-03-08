@@ -123,11 +123,10 @@
               <div
                 class="channel-name"
                 (click)="showActive('channel' + i, i)"
-                [routerLink]="['/dashboard/chat']"
-                [queryParams]="{ sendedPostID: '' }"
+                [routerLink]="['/dashboard/' + userId + '/chat']"
               >
                 <p>#</p>
-                <span>{{ user.firstName }} {{ user.lastName}}</span>
+                <span> {{ user }}</span>
               </div>
             </div>
           </div>

@@ -24,6 +24,7 @@ export class DashboardComponent implements OnInit {
   userId: string;
   firstName: string;
   lastName: string;
+  colRef = collection(getFirestore(), 'users');
 
 /*
   user = new User();
@@ -36,11 +37,12 @@ export class DashboardComponent implements OnInit {
 
   constructor( public router: Router, public dialog: MatDialog,  private firestore: AngularFirestore,  private route: ActivatedRoute) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.route.params.subscribe(async (params) => {
       this.userId = params['id'];
     })
-    this.getUser();
+    await this.getUser();
+    await this.getAllUser();
 
     this. loadChannels();
   }
@@ -57,10 +59,8 @@ export class DashboardComponent implements OnInit {
   }
 
   async getUser() {
-    const db = getFirestore();
-      const colRef = collection(db, 'users');
       try {
-        const docsSnap = await getDocs(colRef);
+        const docsSnap = await getDocs(this.colRef);
         docsSnap.forEach((doc) => {
           if (doc.id == this.userId) {
             this.firstName = doc.get('firstName');
@@ -70,6 +70,18 @@ export class DashboardComponent implements OnInit {
       } catch (error) {
         console.log(error);
       }
+  }
+
+  async getAllUser() {
+    try {
+      const docsSnap = await getDocs(this.colRef);
+      docsSnap.forEach((doc) => {
+          this.users.push(doc.get('firstName') + ' ' + doc.get('lastName'));
+      });
+      console.log(this.users)
+    } catch (error) {
+      console.log(error);
+    }
   }
 
 

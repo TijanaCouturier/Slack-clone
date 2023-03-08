@@ -10,12 +10,11 @@ import { AuthGuard } from './services/auth.guard';
 import { SignUpComponent } from './sign-up/sign-up.component';
 
 const routes: Routes = [
-  {path: 'dashboard', component: DashboardComponent,
+  {path: 'dashboard/:id', component: DashboardComponent,
     children: [
       {path: 'chat', component: ChatComponent},
       {path: 'channel/:id', component: ChannelComponent},
     ]},
-  {path: 'dashboard/:id', component: DashboardComponent},
   {path: 'login', component: LoginComponent},
   {path: 'sign-up', component: SignUpComponent},
   {path: 'imprint', component: ImprintComponent},
