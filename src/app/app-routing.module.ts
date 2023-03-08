@@ -15,6 +15,7 @@ const routes: Routes = [
       {path: 'chat', component: ChatComponent},
       {path: 'channel/:id', component: ChannelComponent},
     ]},
+  {path: 'dashboard/:id', component: DashboardComponent},
   {path: 'login', component: LoginComponent},
   {path: 'sign-up', component: SignUpComponent},
   {path: 'imprint', component: ImprintComponent},

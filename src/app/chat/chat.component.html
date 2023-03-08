@@ -9,9 +9,10 @@
 
 <mat-drawer-container class="chat-container">
     <mat-drawer-content class="chat-container">
-        <mat-card style="display: flex; border-radius: 10px;">
-            <img style="width: 40px; border-radius: 80%; " src="assets/img/girl-2.png">
-            <span style="font-weight: 500;"> Leon </span>
+        <mat-card class="chat-header">
+            <img src="assets/img/girl-2.png">
+            <span> Leon Groschek</span>
+            <img src="assets/img/arrow-down.png">
         </mat-card>
         <mat-card id="chatcard" class="editor">
             <angular-editor [(ngModel)]="message" [config]="editorConfig">

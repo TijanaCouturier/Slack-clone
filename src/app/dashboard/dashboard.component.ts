@@ -15,9 +15,11 @@ export class DashboardComponent implements OnInit {
   channelOpen = true;
   activeChatChannel = '';
   channels = [];
+  users = [];
   innerWidth: number;
   sidenavService: any;
   searchValue = '';
+  name: string;
 
 
 /*
@@ -33,6 +35,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this. loadChannels();
+    this.loadUsers();
   }
   openDialog(){
     this.dialog.open(NewChannelDialogComponent);
@@ -68,6 +71,16 @@ export class DashboardComponent implements OnInit {
       .valueChanges({ idField: 'channelId' })
       .subscribe((changes: any) => {
         this.channels = changes;
+      })
+  }
+
+  loadUsers() {
+    this.firestore
+      .collection('users')
+      .valueChanges({ idField: 'userId' })
+      .subscribe((changes: any) => {
+        this.users = changes;
+        console.log(changes)
       })
   }
 

@@ -10,11 +10,11 @@
                 <form [formGroup]="signUpForm" class="example-form" (ngSubmit)="signUp()">
                     <mat-form-field appearance="fill">
                         <mat-label>Enter your username</mat-label>
-                        <input type="text" formControlName="name" matInput>
+                        <input [(ngModel)]="user.name" type="text" formControlName="name" matInput>
                     </mat-form-field>
                     <mat-form-field appearance="fill">
                         <mat-label>Enter your email</mat-label>
-                        <input type="email" formControlName="email" matInput>
+                        <input [(ngModel)]="user.email" type="email" formControlName="email" matInput>
                     </mat-form-field>
                     <mat-form-field appearance="fill">
                         <mat-label>Enter your password</mat-label>

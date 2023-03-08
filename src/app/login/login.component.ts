@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { CollectionReference } from '@angular/fire/firestore';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
@@ -15,7 +17,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   firebaseErrorMessage: string;
 
-  constructor(private authService: AuthService, private router: Router) { 
+  constructor(private authService: AuthService, private router: Router, private firestore: AngularFirestore) { 
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', Validators.required),
@@ -31,9 +33,11 @@ export class LoginComponent implements OnInit {
         return;
 
     this.authService.loginUser(this.loginForm.value.email, this.loginForm.value.password).then((result) => {
-        if (result == null) {                               // null is success, false means there was an error
-            console.log('logging in...');
-            this.router.navigate(['/dashboard']);                // when the user is logged in, navigate them to dashboard
+        if (result == null) {   
+          let collection = this.firestore.collection('users');
+          
+          debugger
+            console.log('logging in...');                // when the user is logged in, navigate them to dashboard
         }
         else if (result.isValid == false) {
             console.log('login error', result);

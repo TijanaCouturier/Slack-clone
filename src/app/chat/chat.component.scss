@@ -3,7 +3,36 @@
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
-    padding: 30px;
+    padding: 10px;
+}
+
+.chat-header {
+    display: flex; 
+    border-radius: 10px;
+
+    img:nth-of-type(1) {
+        width: 40px; 
+        border-radius: 100%
+    }
+    
+    span {
+        align-self: center;
+        margin-left: 8px;
+        font-weight: 500;
+    }
+    
+    img:nth-of-type(2) {
+        width: 20px; 
+        height: 20px;
+        object-fit: contain;
+        margin-left: 8px;
+        align-self: center;
+        box-sizing: border-box;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
 }
 
 .editor {

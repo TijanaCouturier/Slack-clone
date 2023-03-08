@@ -11,7 +11,6 @@
         </button>
         </div>
     </div>
-
     <button mat-button [matMenuTriggerFor]="beforeMenu">
       <img src="assets/img/girl-2.png" />
     </button>
@@ -81,19 +80,17 @@
                         </div>
                     </div>
                     <div *ngIf="channelOpen">
-                        <div style="max-height: 35px" *ngFor="let channel of channels; let i = index">
-                            <div class="channel-name" [ngClass]="{
-                    'active-chatroom': activeChatChannel == 'channel' + i
-                  }" (click)="showActive('channel' + i, i)" [routerLink]="['/dashboard/chat']" [queryParams]="{ sendedPostID: '' }">
+                        <div style="max-height: 35px" *ngFor="let user of users; let i = index">
+                            <div class="channel-name" (click)="showActive('channel' + i, i)" [routerLink]="['/dashboard/chat']" [queryParams]="{ sendedPostID: '' }">
                                 <p>#</p>
-                                <span>{{ channel.channelName }}</span>
+                                <span>{{ user.name }}</span>
                             </div>
                         </div>
                     </div>
 
                     <div (click)="openDialog()" class="example-button-container">
                         <mat-icon style="color: black">add</mat-icon>
-                        <p>Create new Channel</p>
+                        <p>Create new Chat</p>
                     </div>
                 </li>
             </div>
