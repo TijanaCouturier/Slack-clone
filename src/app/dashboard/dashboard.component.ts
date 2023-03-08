@@ -1,9 +1,11 @@
-import { Component, OnInit, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { NewChannelDialogComponent } from '../new-channel-dialog/new-channel-dialog.component';
+import { LoginComponent } from '../login/login.component';
+import { collection, getDocs, getFirestore } from '@firebase/firestore';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,8 +21,9 @@ export class DashboardComponent implements OnInit {
   innerWidth: number;
   sidenavService: any;
   searchValue = '';
-  name: string;
-
+  userId: string;
+  firstName: string;
+  lastName: string;
 
 /*
   user = new User();
@@ -31,11 +34,15 @@ export class DashboardComponent implements OnInit {
   panelOpenState = false; */
  // channels: Channel[] = [];
 
-  constructor( public router: Router, public dialog: MatDialog,  private firestore: AngularFirestore,  ) { }
+  constructor( public router: Router, public dialog: MatDialog,  private firestore: AngularFirestore,  private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe(async (params) => {
+      this.userId = params['id'];
+    })
+    this.getUser();
+
     this. loadChannels();
-    this.loadUsers();
   }
   openDialog(){
     this.dialog.open(NewChannelDialogComponent);
@@ -47,6 +54,22 @@ export class DashboardComponent implements OnInit {
   
   onSearchTextChanges(){
     this.searchTextChanges.emit(this.searchValue);
+  }
+
+  async getUser() {
+    const db = getFirestore();
+      const colRef = collection(db, 'users');
+      try {
+        const docsSnap = await getDocs(colRef);
+        docsSnap.forEach((doc) => {
+          if (doc.id == this.userId) {
+            this.firstName = doc.get('firstName');
+            this.lastName = doc.get('lastName');
+          }
+        });
+      } catch (error) {
+        console.log(error);
+      }
   }
 
 
@@ -73,17 +96,5 @@ export class DashboardComponent implements OnInit {
         this.channels = changes;
       })
   }
-
-  loadUsers() {
-    this.firestore
-      .collection('users')
-      .valueChanges({ idField: 'userId' })
-      .subscribe((changes: any) => {
-        this.users = changes;
-        console.log(changes)
-      })
-  }
-
-
 
 }

@@ -9,8 +9,12 @@
             <mat-card-content>
                 <form [formGroup]="signUpForm" class="example-form" (ngSubmit)="signUp()">
                     <mat-form-field appearance="fill">
-                        <mat-label>Enter your username</mat-label>
-                        <input [(ngModel)]="user.name" type="text" formControlName="name" matInput>
+                        <mat-label>Enter your first name</mat-label>
+                        <input [(ngModel)]="user.firstName" type="text" formControlName="name" matInput>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Enter your last name</mat-label>
+                        <input [(ngModel)]="user.lastName" type="text" formControlName="name" matInput>
                     </mat-form-field>
                     <mat-form-field appearance="fill">
                         <mat-label>Enter your email</mat-label>
