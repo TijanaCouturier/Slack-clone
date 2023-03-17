@@ -1,4 +1,7 @@
 export class User {
+    toLowerCase(): string {
+      throw new Error('Method not implemented.');
+    }
     userId: string; //id
     firstName: string;
     lastName: string;

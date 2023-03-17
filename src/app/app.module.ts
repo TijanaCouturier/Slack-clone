@@ -29,6 +29,7 @@ import { DataProtectionComponent } from './data-protection/data-protection.compo
 import {MatExpansionModule} from '@angular/material/expansion';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { DialogEditChannelComponent } from './dialog-edit-channel/dialog-edit-channel.component';
 import { HttpClientModule} from '@angular/common/http';
 import { AngularEditorModule } from '@kolkov/angular-editor';
@@ -36,6 +37,7 @@ import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { MatFormFieldModule } from "@angular/material/form-field";
 
 
 
@@ -81,7 +83,9 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     AngularEditorModule,
     MatCheckboxModule,
     MatExpansionModule,
-    PickerModule
+    PickerModule,
+    MatAutocompleteModule,
+    MatFormFieldModule
   //  QuillModule.forRoot()
   ],
   providers: [],
